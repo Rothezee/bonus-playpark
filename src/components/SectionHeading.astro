@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  accent?: 'blue' | 'red' | 'orange' | 'yellow' | 'green' | 'purple';
+  centered?: boolean;
+}
+
+const { title, subtitle, accent = 'purple', centered = true } = Astro.props;
+
+const accentColors = {
+  blue: 'text-accent-blue',
+  red: 'text-accent-red',
+  orange: 'text-accent-orange',
+  yellow: 'text-accent-yellow',
+  green: 'text-accent-green',
+  purple: 'text-primary',
+};
+---
+
+<div class:list={['mb-10', centered && 'text-center']}>
+  <h2 class="font-display text-3xl font-bold text-gray-900 sm:text-4xl">
+    {title}
+  </h2>
+  {
+    subtitle && (
+      <p class:list={['mt-3 text-lg font-medium', accentColors[accent], centered && 'mx-auto max-w-2xl']}>
+        {subtitle}
+      </p>
+    )
+  }
+</div>

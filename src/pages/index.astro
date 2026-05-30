@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SucursalCard from '../components/SucursalCard.astro';
+import site from '../data/site.json';
+import sucursales from '../data/sucursales.json';
+---
+
+<BaseLayout title={site.name} description={site.description}>
+  <Header slot="header" />
+
+  <Hero
+    title="Bienvenidos a Bonus Playpark"
+    subtitle="Descubrí un mundo de diversión familiar con juegos, premios y momentos para recordar. Un lugar donde las familias vuelven."
+  >
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="/ubicacion" class="btn btn-accent">Visitá una sucursal</a>
+      <a href="/franquicias" class="btn btn-secondary">Quiero abrir mi franquicia</a>
+    </div>
+  </Hero>
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading
+        title="Mirá cómo es la experiencia Bonus"
+        subtitle="Luces, juegos y sonrisas para chicos y grandes"
+        accent="blue"
+      />
+      <div class="card-sticker mx-auto max-w-4xl overflow-hidden">
+        <div class="relative aspect-video bg-surface-muted">
+          <img
+            src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=1200&q=80"
+            alt="Interior de Bonus Playpark con máquinas de juegos"
+            class="h-full w-full object-cover"
+          />
+          <div class="absolute inset-0 flex items-center justify-center bg-primary/40">
+            <button
+              type="button"
+              class="flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-white/20 text-white backdrop-blur-sm transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="Ver video (próximamente)"
+            >
+              <svg class="ml-1 h-10 w-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="p-4 text-center text-sm text-gray-600">Video promocional — placeholder para tu contenido</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-surface-muted">
+    <div class="container-site">
+      <SectionHeading
+        title="¿Por qué elegir Bonus?"
+        subtitle="Más que un parque de juegos: un espacio pensado para la familia"
+        accent="orange"
+      />
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="card-sticker p-6 text-center">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent-blue/20 text-2xl">🎮</div>
+          <h3 class="font-display text-xl font-bold text-primary">Juegos para todas las edades</h3>
+          <p class="mt-2 text-gray-600">Desde plaza blanda para los más chicos hasta arcade y simuladores para toda la familia.</p>
+        </article>
+        <article class="card-sticker p-6 text-center">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent-orange/20 text-2xl">🎁</div>
+          <h3 class="font-display text-xl font-bold text-primary">Premios y canje</h3>
+          <p class="mt-2 text-gray-600">Acumulá puntos jugando y elegí premios increíbles en nuestro sector de canje.</p>
+        </article>
+        <article class="card-sticker p-6 text-center">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent-green/20 text-2xl">🎂</div>
+          <h3 class="font-display text-xl font-bold text-primary">Cumpleaños y eventos</h3>
+          <p class="mt-2 text-gray-600">Festejá con salones decorados, animación y diversión garantizada para invitados de todas las edades.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading title="Nuestras sucursales" subtitle="Te esperamos en CABA" accent="green" />
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          sucursales.map((s) => (
+            <SucursalCard
+              nombre={s.nombre}
+              direccion={s.direccion}
+              descripcion={s.descripcion}
+              horarios={s.horarios}
+              mapUrl={s.mapUrl}
+            />
+          ))
+        }
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/ubicacion" class="btn btn-primary">Ver todas las ubicaciones</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-primary text-white">
+    <div class="container-site text-center">
+      <h2 class="font-display text-3xl font-bold sm:text-4xl">Sumate a la familia Bonus</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-white/90">
+        Seguinos en redes para enterarte de sorteos, promos y novedades.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          @bonusplaypark
+        </a>
+        <a href="/sorteos" class="btn btn-accent">Ver sorteos activos</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

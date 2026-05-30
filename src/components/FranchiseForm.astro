@@ -1,0 +1,147 @@
+---
+import site from '../data/site.json';
+
+const whatsappUrl = `https://wa.me/${site.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent('Hola! Quiero saber más sobre la franquicia Bonus Playpark.')}`;
+const formAction = site.formspreeFranchise || undefined;
+---
+
+<form
+  action={formAction}
+  method="POST"
+  class="card-sticker mx-auto max-w-xl p-6 sm:p-8"
+  id="franchise-form"
+>
+  <h3 class="font-display text-2xl font-bold text-primary">Registrá tu interés</h3>
+  <p class="mt-2 text-gray-600">Dejanos tus datos y te contactamos con la información completa.</p>
+
+  <div class="mt-6 space-y-4">
+    <div>
+      <label for="franchise-name" class="mb-1 block text-sm font-semibold text-gray-700">Nombre y apellido</label>
+      <input
+        type="text"
+        id="franchise-name"
+        name="nombre"
+        required
+        class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+      />
+    </div>
+
+    <div>
+      <label for="franchise-email" class="mb-1 block text-sm font-semibold text-gray-700">Email</label>
+      <input
+        type="email"
+        id="franchise-email"
+        name="email"
+        required
+        class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+      />
+    </div>
+
+    <div>
+      <label for="franchise-whatsapp" class="mb-1 block text-sm font-semibold text-gray-700">WhatsApp</label>
+      <input
+        type="tel"
+        id="franchise-whatsapp"
+        name="whatsapp"
+        required
+        class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+      />
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label for="franchise-city" class="mb-1 block text-sm font-semibold text-gray-700">Ciudad</label>
+        <input
+          type="text"
+          id="franchise-city"
+          name="ciudad"
+          required
+          class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+        />
+      </div>
+      <div>
+        <label for="franchise-province" class="mb-1 block text-sm font-semibold text-gray-700">Provincia</label>
+        <select
+          id="franchise-province"
+          name="provincia"
+          required
+          class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+        >
+          <option value="">Seleccioná</option>
+          <option value="CABA">CABA</option>
+          <option value="Buenos Aires">Buenos Aires</option>
+          <option value="Córdoba">Córdoba</option>
+          <option value="Santa Fe">Santa Fe</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Otra">Otra</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label for="franchise-local" class="mb-1 block text-sm font-semibold text-gray-700">¿Ya contás con local?</label>
+      <select
+        id="franchise-local"
+        name="tiene_local"
+        required
+        class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+      >
+        <option value="">Seleccioná una opción</option>
+        <option value="si">Sí, ya tengo local</option>
+        <option value="buscando">Estoy buscando</option>
+        <option value="no">Todavía no</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="franchise-message" class="mb-1 block text-sm font-semibold text-gray-700">Mensaje opcional</label>
+      <textarea
+        id="franchise-message"
+        name="mensaje"
+        rows="3"
+        class="w-full rounded-xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+      ></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-6 w-full">Quiero saber más sobre la franquicia</button>
+
+  <p class="mt-4 text-xs text-gray-500">
+    Al enviar este formulario aceptás que te contactemos por email o WhatsApp con información sobre la franquicia.
+  </p>
+
+  {
+    !formAction && (
+      <p class="mt-2 text-xs text-gray-500">
+        Sin Formspree configurado: el envío abrirá WhatsApp con tus datos. Configurá <code>formspreeFranchise</code> en site.json.
+      </p>
+    )
+  }
+</form>
+
+<a href={whatsappUrl} class="btn btn-accent mx-auto mt-4 flex max-w-xl">
+  O escribinos directo por WhatsApp
+</a>
+
+<script define:vars={{ whatsappUrl, formAction }}>
+  const form = document.getElementById('franchise-form');
+  form?.addEventListener('submit', (e) => {
+    if (formAction) return;
+    e.preventDefault();
+    const data = new FormData(form);
+    const msg = [
+      'Hola! Quiero saber más sobre la franquicia Bonus Playpark.',
+      '',
+      `Nombre: ${data.get('nombre')}`,
+      `Email: ${data.get('email')}`,
+      `WhatsApp: ${data.get('whatsapp')}`,
+      `Ciudad: ${data.get('ciudad')}`,
+      `Provincia: ${data.get('provincia')}`,
+      `¿Tiene local?: ${data.get('tiene_local')}`,
+      data.get('mensaje') ? `Mensaje: ${data.get('mensaje')}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
+    window.open(`${whatsappUrl.split('?')[0]}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>

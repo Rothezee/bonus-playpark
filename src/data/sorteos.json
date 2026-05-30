@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sorteo-verano",
+    "titulo": "Sorteo de Verano Bonus",
+    "descripcion": "Participá y ganá un pack familiar con créditos de juego, premios y merchandising exclusivo de Bonus Playpark.",
+    "fechaFin": "31 de marzo de 2026",
+    "imagen": "https://images.unsplash.com/photo-1467810563316-b5472a094f2d?w=800&q=80",
+    "activo": true,
+    "bases": [
+      "Seguir @bonusplaypark en Instagram",
+      "Dar like a la publicación del sorteo",
+      "Etiquetar a 2 amigos en los comentarios",
+      "Mayores de 18 años · Válido en Argentina"
+    ]
+  },
+  {
+    "id": "sorteo-cumple",
+    "titulo": "Sorteo Cumple Bonus",
+    "descripcion": "Ganá un cumpleaños completo para 15 invitados en la sucursal que elijas.",
+    "fechaFin": "15 de abril de 2026",
+    "imagen": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
+    "activo": true,
+    "bases": [
+      "Completar el formulario de contacto indicando 'Sorteo Cumple'",
+      "Compartir la publicación en stories",
+      "Un participante por familia"
+    ]
+  }
+]

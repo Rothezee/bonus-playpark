@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FranchiseForm from '../components/FranchiseForm.astro';
+---
+
+<BaseLayout
+  title="Franquicias"
+  description="Sumate a Bonus Playpark como franquiciado. Un concepto familiar probado, en expansión por todo el país."
+>
+  <Header slot="header" />
+
+  <Hero
+    title="Franquicias Bonus Playpark"
+    subtitle="Un concepto familiar, probado y en expansión. Llevá la diversión a tu ciudad."
+    compact
+  />
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading
+        title="Un negocio que la gente ya entiende (y busca)"
+        subtitle="El entretenimiento familiar es una experiencia que atrae público de todas las edades"
+        accent="green"
+      />
+      <div class="mx-auto max-w-3xl space-y-4 text-lg text-gray-700">
+        <p>
+          Los parques de juegos y salones familiares se transformaron en un clásico del entretenimiento urbano.
+          No hay que educar al cliente: entran, juegan, vuelven. El modelo combina diversión, repetición constante
+          y una operación clara.
+        </p>
+        <p>
+          Bonus Playpark apuesta a la familiaridad: un espacio cálido, seguro y colorido donde las familias
+          se sienten en confianza y vuelven una y otra vez.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-surface-muted">
+    <div class="container-site">
+      <SectionHeading title="Por qué este modelo funciona" accent="orange" />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            { icon: '📈', title: 'Alta demanda comprobada', desc: 'Entretenimiento familiar en constante crecimiento.' },
+            { icon: '⚙️', title: 'Operación sencilla', desc: 'Procesos claros y equipamiento probado.' },
+            { icon: '💰', title: 'Recuperación de inversión', desc: 'Modelo con flujo de caja recurrente.' },
+            { icon: '👥', title: 'Bajo staff requerido', desc: 'Operación eficiente con equipo reducido.' },
+          ].map((item) => (
+            <article class="card-sticker p-5 text-center">
+              <div class="text-3xl">{item.icon}</div>
+              <h3 class="mt-3 font-display font-bold text-primary">{item.title}</h3>
+              <p class="mt-2 text-sm text-gray-600">{item.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading title="La franquicia incluye" accent="blue" />
+      <ul class="mx-auto grid max-w-3xl gap-3 sm:grid-cols-2">
+        {
+          [
+            'Marca y derecho de uso',
+            'Asesoramiento en diseño y layout del local',
+            'Provisión e instalación de equipamiento',
+            'Provisión de premios y stock inicial',
+            'Sistema de tarjetas y fidelización',
+            'Lineamientos operativos y comerciales',
+            'Capacitación y entrenamiento',
+            'Soporte en apertura y puesta en marcha',
+            'Soporte en marketing y promociones',
+            'Soporte de mantenimiento',
+          ].map((item) => (
+            <li class="flex items-start gap-2 rounded-xl bg-white p-3 shadow-sm">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent-green" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-gray-700">{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-padding bg-surface-muted">
+    <div class="container-site">
+      <SectionHeading
+        title="Perfil del franquiciado"
+        subtitle="Buscamos emprendedores con foco en operación y ganas de crecer"
+        accent="purple"
+      />
+      <p class="mx-auto max-w-2xl text-center text-gray-700">
+        No se requiere experiencia previa en entretenimiento. Valoramos la actitud emprendedora,
+        el compromiso con la familia bonus y la vocación de servicio.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding" id="registro">
+    <div class="container-site">
+      <FranchiseForm />
+      <p class="mx-auto mt-8 max-w-xl text-center text-xs text-gray-500">
+        Este sitio es informativo y no constituye una oferta pública. La disponibilidad de territorios
+        y condiciones se evalúan en la etapa de contacto.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

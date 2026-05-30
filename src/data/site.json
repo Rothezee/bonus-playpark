@@ -1,0 +1,25 @@
+{
+  "name": "Bonus Playpark",
+  "tagline": "Diversión familiar, premios y momentos para recordar",
+  "description": "Bonus Playpark es un parque de juegos y entretenimiento familiar. Visitá nuestras sucursales o sumate como franquiciado.",
+  "email": "hola@bonusplaypark.com.ar",
+  "whatsapp": "+5491123456789",
+  "whatsappMessage": "Hola! Quiero consultar sobre Bonus Playpark.",
+  "formspreeContact": "",
+  "formspreeFranchise": "",
+  "social": {
+    "instagram": "https://instagram.com/bonusplaypark",
+    "facebook": "https://facebook.com/bonusplaypark",
+    "tiktok": "https://tiktok.com/@bonusplaypark"
+  },
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Galería", "href": "/galeria" },
+    { "label": "Ubicación", "href": "/ubicacion" },
+    { "label": "Precios", "href": "/precios" },
+    { "label": "Franquicias", "href": "/franquicias", "highlight": true },
+    { "label": "Sorteos", "href": "/sorteos" }
+  ],
+  "horariosGenerales": "Lunes a Domingo — también feriados · 10:00 a 22:00 hs",
+  "copyright": "© 2026 Bonus Playpark. Todos los derechos reservados."
+}

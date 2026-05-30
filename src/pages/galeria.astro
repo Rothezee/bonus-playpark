@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import galeria from '../data/galeria.json';
+---
+
+<BaseLayout title="Galería" description="Fotos de Bonus Playpark: diversión familiar, juegos, premios y cumpleaños.">
+  <Header slot="header" />
+
+  <Hero
+    title="Galería Bonus Playpark"
+    subtitle="Momentos de diversión, sonrisas y premios en nuestras sucursales"
+    compact
+  />
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading
+        title="Así se vive Bonus"
+        subtitle="Reemplazá estas fotos con imágenes reales de tus sucursales"
+        accent="blue"
+      />
+      <GalleryGrid items={galeria} />
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

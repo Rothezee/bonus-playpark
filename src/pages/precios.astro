@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PriceCard from '../components/PriceCard.astro';
+import precios from '../data/precios.json';
+---
+
+<BaseLayout title="Precios" description="Precios y paquetes de Bonus Playpark. Tarjetas recargables, packs familiares y cumpleaños.">
+  <Header slot="header" />
+
+  <Hero
+    title="Precios y paquetes"
+    subtitle="Elegí la opción que mejor se adapte a tu visita. Diversión para todos los bolsillos."
+    compact
+  />
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading title="Nuestros planes" subtitle="Tarjetas, packs y eventos especiales" accent="orange" />
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          precios.tarjetas.map((t) => (
+            <PriceCard
+              nombre={t.nombre}
+              precio={t.precio}
+              descripcion={t.descripcion}
+              items={t.items}
+              destacado={t.destacado}
+              color={t.color as 'blue' | 'orange' | 'green'}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-surface-muted">
+    <div class="container-site">
+      <SectionHeading title="Créditos por juego" accent="blue" />
+      <div class="card-sticker overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[400px] text-left">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th class="px-6 py-4 font-display font-semibold">Juego</th>
+                <th class="px-6 py-4 font-display font-semibold">Créditos</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                precios.juegos.map((j, i) => (
+                  <tr class:list={[i % 2 === 0 ? 'bg-white' : 'bg-surface-muted']}>
+                    <td class="px-6 py-4 text-gray-800">{j.juego}</td>
+                    <td class="px-6 py-4 font-semibold text-primary">{j.creditos}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-sm text-gray-500">{precios.nota}</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container-site text-center">
+      <p class="text-lg text-gray-700">¿Querés organizar un cumpleaños o evento especial?</p>
+      <a href="/contacto" class="btn btn-primary mt-4">Consultanos</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

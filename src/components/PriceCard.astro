@@ -1,0 +1,60 @@
+---
+interface Props {
+  nombre: string;
+  precio: string;
+  descripcion: string;
+  items: string[];
+  destacado?: boolean;
+  color?: 'blue' | 'orange' | 'green';
+}
+
+const { nombre, precio, descripcion, items, destacado = false, color = 'blue' } = Astro.props;
+
+const colorMap = {
+  blue: 'border-accent-blue bg-accent-blue/5',
+  orange: 'border-accent-orange bg-accent-orange/5',
+  green: 'border-accent-green bg-accent-green/5',
+};
+
+const badgeMap = {
+  blue: 'bg-accent-blue',
+  orange: 'bg-accent-orange',
+  green: 'bg-accent-green',
+};
+---
+
+<article
+  class:list={[
+    'card-sticker relative flex flex-col p-6',
+    destacado && 'ring-4 ring-accent-orange ring-offset-2',
+    colorMap[color],
+  ]}
+>
+  {
+    destacado && (
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent-orange px-4 py-1 text-xs font-bold uppercase text-white">
+        Más elegido
+      </span>
+    )
+  }
+  <div class:list={['mb-4 inline-flex h-3 w-12 rounded-full', badgeMap[color]]} aria-hidden="true"></div>
+  <h3 class="font-display text-xl font-bold text-gray-900">{nombre}</h3>
+  <p class="mt-2 font-display text-3xl font-bold text-primary">{precio}</p>
+  <p class="mt-2 text-gray-600">{descripcion}</p>
+  <ul class="mt-5 flex-1 space-y-2 text-sm text-gray-700">
+    {
+      items.map((item) => (
+        <li class="flex items-start gap-2">
+          <svg class="mt-0.5 h-4 w-4 shrink-0 text-accent-green" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          {item}
+        </li>
+      ))
+    }
+  </ul>
+</article>

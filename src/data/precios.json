@@ -1,0 +1,52 @@
+{
+  "tarjetas": [
+    {
+      "id": "basica",
+      "nombre": "Tarjeta Bonus",
+      "precio": "$5.000",
+      "descripcion": "Tarjeta recargable para jugar en todas nuestras máquinas.",
+      "destacado": false,
+      "color": "blue",
+      "items": [
+        "Recargable en cualquier sucursal",
+        "Saldo acumulable",
+        "Canje de premios con puntos"
+      ]
+    },
+    {
+      "id": "familiar",
+      "nombre": "Pack Familiar",
+      "precio": "$15.000",
+      "descripcion": "Ideal para venir en familia y disfrutar juntos.",
+      "destacado": true,
+      "color": "orange",
+      "items": [
+        "Créditos para 4 personas",
+        "10% de bonus en la recarga",
+        "Válido por 30 días"
+      ]
+    },
+    {
+      "id": "cumpleanos",
+      "nombre": "Cumpleaños Bonus",
+      "precio": "Consultar",
+      "descripcion": "Festejá el cumple de tu hijo/a con diversión garantizada.",
+      "destacado": false,
+      "color": "green",
+      "items": [
+        "Salón privado decorado",
+        "Animador/a incluido",
+        "Créditos de juego para invitados",
+        "Opciones de catering"
+      ]
+    }
+  ],
+  "juegos": [
+    { "juego": "Máquinas de peluches", "creditos": "3 - 5 créditos" },
+    { "juego": "Autos a control remoto", "creditos": "2 créditos" },
+    { "juego": "Simuladores y arcade", "creditos": "4 créditos" },
+    { "juego": "Plaza blanda (menores)", "creditos": "1 crédito / 15 min" },
+    { "juego": "Premios especiales", "creditos": "Variable" }
+  ],
+  "nota": "Los precios son orientativos y pueden variar según la sucursal. Consultá en recepción al momento de tu visita."
+}

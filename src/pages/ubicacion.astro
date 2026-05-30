@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SucursalCard from '../components/SucursalCard.astro';
+import site from '../data/site.json';
+import sucursales from '../data/sucursales.json';
+---
+
+<BaseLayout
+  title="Ubicación"
+  description="Encontrá nuestras sucursales Bonus Playpark en Buenos Aires. Horarios, direcciones y mapas."
+>
+  <Header slot="header" />
+
+  <Hero
+    title="Visitanos en nuestras sucursales"
+    subtitle="Te esperamos con la mejor diversión familiar. Fácil acceso en transporte público y zonas comerciales."
+    compact
+  />
+
+  <section class="section-padding">
+    <div class="container-site">
+      <SectionHeading
+        title="¿Dónde estamos?"
+        subtitle="Elegí la sucursal más cercana y vení a jugar"
+        accent="blue"
+      />
+      <div class="grid gap-8">
+        {
+          sucursales.map((s) => (
+            <SucursalCard
+              nombre={s.nombre}
+              direccion={s.direccion}
+              descripcion={s.descripcion}
+              horarios={s.horarios}
+              mapUrl={s.mapUrl}
+              embedUrl={s.embedUrl}
+              showMap={true}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-surface-muted">
+    <div class="container-site text-center">
+      <SectionHeading title="Horarios" accent="orange" />
+      <div class="card-sticker mx-auto max-w-xl p-8">
+        <p class="font-display text-2xl font-bold text-primary">{site.horariosGenerales}</p>
+        <p class="mt-3 text-gray-600">Abrimos todos los días del año, incluidos feriados.</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

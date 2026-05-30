@@ -1,0 +1,101 @@
+---
+interface GalleryItem {
+  id: string;
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="gallery-grid">
+  {
+    items.map((item) => (
+      <button
+        type="button"
+        class="gallery-item group relative overflow-hidden rounded-[var(--radius-sticker)] border-4 border-white shadow-[var(--shadow-sticker)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        data-src={item.src}
+        data-caption={item.caption}
+        aria-label={`Ver imagen: ${item.caption}`}
+      >
+        <img
+          src={item.src}
+          alt={item.alt}
+          class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-transparent p-4 pt-10">
+          <p class="font-semibold text-white">{item.caption}</p>
+        </div>
+      </button>
+    ))
+  }
+</div>
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Visor de imagen"
+>
+  <button
+    type="button"
+    id="lightbox-close"
+    class="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    aria-label="Cerrar"
+  >
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <figure class="max-h-[90vh] max-w-4xl">
+    <img id="lightbox-img" src="" alt="" class="max-h-[80vh] w-full rounded-2xl object-contain" />
+    <figcaption id="lightbox-caption" class="mt-3 text-center text-white"></figcaption>
+  </figure>
+</div>
+
+<script>
+  const grid = document.getElementById('gallery-grid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  const openLightbox = (src: string, caption: string) => {
+    if (!lightbox || !lightboxImg || !lightboxCaption) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = caption;
+    lightboxCaption.textContent = caption;
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  };
+
+  grid?.querySelectorAll('.gallery-item').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const el = btn as HTMLElement;
+      openLightbox(el.dataset.src ?? '', el.dataset.caption ?? '');
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

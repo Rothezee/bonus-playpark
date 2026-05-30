@@ -1,0 +1,20 @@
+[
+  {
+    "id": "palermo",
+    "nombre": "Sucursal Palermo",
+    "direccion": "Av. Santa Fe 1234, Palermo, CABA",
+    "descripcion": "Nuestro local en el corazón de Palermo, a pasos de los principales shoppings y zonas comerciales.",
+    "horarios": "Lun a Dom 10:00 - 22:00",
+    "mapUrl": "https://maps.google.com/?q=Av.+Santa+Fe+1234,+Buenos+Aires",
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016887889394!2d-58.420000!3d-34.587000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM1JzEzLjIiUyA1OMKwMjUnMTIuMCJX!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar"
+  },
+  {
+    "id": "once",
+    "nombre": "Sucursal Once",
+    "direccion": "Av. Corrientes 2500, Once, CABA",
+    "descripcion": "A 50 metros de Av. Corrientes y cerca de la estación Once. Fácil acceso en transporte público.",
+    "horarios": "Lun a Dom 10:00 - 22:00",
+    "mapUrl": "https://maps.google.com/?q=Av.+Corrientes+2500,+Buenos+Aires",
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016887889394!2d-58.405000!3d-34.603000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM2JzEwLjgiUyA1OMKwMjQnMTguMCJX!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar"
+  }
+]

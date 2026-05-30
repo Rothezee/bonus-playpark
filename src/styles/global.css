@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6a218e;
+  --color-primary-dark: #4f1869;
+  --color-primary-light: #8b3db5;
+  --color-accent-blue: #00aeef;
+  --color-accent-red: #e31e24;
+  --color-accent-orange: #f7941d;
+  --color-accent-yellow: #ffd100;
+  --color-accent-green: #39b54a;
+  --color-surface: #faf7fc;
+  --color-surface-muted: #f3ebf8;
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --radius-sticker: 1.5rem;
+  --radius-pill: 9999px;
+  --shadow-sticker: 0 8px 24px rgba(106, 33, 142, 0.15);
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-surface);
+    color: #2d2d2d;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark focus-visible:ring-primary;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-white bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 focus-visible:ring-white;
+  }
+
+  .btn-accent {
+    @apply bg-accent-green text-white hover:brightness-110 focus-visible:ring-accent-green;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary bg-white text-primary hover:bg-surface-muted focus-visible:ring-primary;
+  }
+
+  .card-sticker {
+    @apply rounded-[var(--radius-sticker)] border-4 border-white bg-white shadow-[var(--shadow-sticker)];
+  }
+
+  .section-padding {
+    @apply px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
+  }
+
+  .container-site {
+    @apply mx-auto max-w-6xl;
+  }
+}

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import site from '../data/site.json';
+
+const whatsappUrl = `https://wa.me/${site.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(site.whatsappMessage)}`;
+---
+
+<BaseLayout title="Contacto" description="Contactá a Bonus Playpark. Consultas, cumpleaños, franquicias y más.">
+  <Header slot="header" />
+
+  <Hero
+    title="Hablemos"
+    subtitle="¿Tenés alguna duda o sugerencia? Escribinos y te respondemos a la brevedad."
+    compact
+  />
+
+  <section class="section-padding">
+    <div class="container-site grid gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-primary">Datos de contacto</h2>
+        <ul class="mt-6 space-y-4">
+          <li class="card-sticker p-4">
+            <p class="text-sm font-semibold text-gray-500">Email</p>
+            <a href={`mailto:${site.email}`} class="text-lg font-semibold text-primary hover:underline">{site.email}</a>
+          </li>
+          <li class="card-sticker p-4">
+            <p class="text-sm font-semibold text-gray-500">WhatsApp</p>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-primary hover:underline">
+              {site.whatsapp}
+            </a>
+          </li>
+          <li class="card-sticker p-4">
+            <p class="text-sm font-semibold text-gray-500">Redes sociales</p>
+            <div class="mt-2 flex flex-wrap gap-3">
+              <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="text-accent-red hover:underline">Instagram</a>
+              <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" class="text-accent-blue hover:underline">Facebook</a>
+              <a href={site.social.tiktok} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">TikTok</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

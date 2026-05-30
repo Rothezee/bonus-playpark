@@ -1,0 +1,52 @@
+---
+interface Props {
+  nombre: string;
+  direccion: string;
+  descripcion: string;
+  horarios: string;
+  mapUrl: string;
+  embedUrl?: string;
+  showMap?: boolean;
+}
+
+const { nombre, direccion, descripcion, horarios, mapUrl, embedUrl, showMap = false } = Astro.props;
+---
+
+<article class="card-sticker overflow-hidden">
+  <div class="p-6">
+    <h3 class="font-display text-xl font-bold text-primary">{nombre}</h3>
+    <p class="mt-2 text-gray-600">{descripcion}</p>
+    <div class="mt-4 space-y-2 text-sm">
+      <p class="flex items-start gap-2">
+        <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>{direccion}</span>
+      </p>
+      <p class="flex items-start gap-2">
+        <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{horarios}</span>
+      </p>
+    </div>
+    <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline mt-5 text-sm">
+      Ver en el mapa
+    </a>
+  </div>
+  {
+    showMap && embedUrl && (
+      <div class="aspect-video w-full">
+        <iframe
+          src={embedUrl}
+          title={`Mapa de ${nombre}`}
+          class="h-full w-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        />
+      </div>
+    )
+  }
+</article>
