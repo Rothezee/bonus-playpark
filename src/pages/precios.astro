@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import PriceCard from '../components/PriceCard.astro';
 import precios from '../data/precios.json';
+import { withBase } from '../utils/url';
 ---
 
 <BaseLayout title="Precios" description="Precios y paquetes de Bonus Playpark. Tarjetas recargables, packs familiares y cumpleaños.">
@@ -69,7 +70,7 @@ import precios from '../data/precios.json';
   <section class="section-padding">
     <div class="container-site text-center">
       <p class="text-lg text-gray-700">¿Querés organizar un cumpleaños o evento especial?</p>
-      <a href="/contacto" class="btn btn-primary mt-4">Consultanos</a>
+      <a href={withBase('/contacto')} class="btn btn-primary mt-4">Consultanos</a>
     </div>
   </section>
 

@@ -1,18 +1,15 @@
 ---
 import site from '../data/site.json';
+import { isActiveLink, withBase } from '../utils/url';
 
 const currentPath = Astro.url.pathname;
-
-const isActive = (href: string) => {
-  if (href === '/') return currentPath === '/';
-  return currentPath.startsWith(href);
-};
+const logoUrl = withBase('logo.png');
 ---
 
 <header class="sticky top-0 z-50 bg-primary shadow-lg">
   <div class="container-site flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-    <a href="/" class="flex shrink-0 items-center gap-3 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary">
-      <img src="/logo.png" alt={site.name} class="h-12 w-12 rounded-full border-2 border-white sm:h-14 sm:w-14" />
+    <a href={withBase('/')} class="flex shrink-0 items-center gap-3 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary">
+      <img src={logoUrl} alt={site.name} class="h-12 w-12 rounded-full border-2 border-white sm:h-14 sm:w-14" />
       <span class="hidden font-display text-lg font-semibold text-white sm:block">{site.name}</span>
     </a>
 
@@ -20,12 +17,12 @@ const isActive = (href: string) => {
       {
         site.nav.map((item) => (
           <a
-            href={item.href}
+            href={withBase(item.href)}
             class:list={[
               'rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white',
               item.highlight
                 ? 'bg-accent-green text-white hover:brightness-110'
-                : isActive(item.href)
+                : isActiveLink(item.href, currentPath)
                   ? 'bg-white/20 text-white'
                   : 'text-white/90 hover:bg-white/10 hover:text-white',
             ]}
@@ -34,7 +31,7 @@ const isActive = (href: string) => {
           </a>
         ))
       }
-      <a href="/contacto" class="btn btn-secondary ml-2 text-sm">Contacto</a>
+      <a href={withBase('/contacto')} class="btn btn-secondary ml-2 text-sm">Contacto</a>
     </nav>
 
     <button
@@ -60,12 +57,12 @@ const isActive = (href: string) => {
       {
         site.nav.map((item) => (
           <a
-            href={item.href}
+            href={withBase(item.href)}
             class:list={[
               'rounded-xl px-4 py-3 font-semibold transition-colors',
               item.highlight
                 ? 'bg-accent-green text-white'
-                : isActive(item.href)
+                : isActiveLink(item.href, currentPath)
                   ? 'bg-white/20 text-white'
                   : 'text-white/90 hover:bg-white/10',
             ]}
@@ -74,7 +71,7 @@ const isActive = (href: string) => {
           </a>
         ))
       }
-      <a href="/contacto" class="btn btn-secondary mt-2 w-full">Contacto</a>
+      <a href={withBase('/contacto')} class="btn btn-secondary mt-2 w-full">Contacto</a>
     </div>
   </nav>
 </header>

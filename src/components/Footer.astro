@@ -1,8 +1,10 @@
 ---
 import site from '../data/site.json';
 import sucursales from '../data/sucursales.json';
+import { withBase } from '../utils/url';
 
 const whatsappUrl = `https://wa.me/${site.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(site.whatsappMessage)}`;
+const logoUrl = withBase('logo.png');
 ---
 
 <footer class="bg-primary-dark text-white">
@@ -10,7 +12,7 @@ const whatsappUrl = `https://wa.me/${site.whatsapp.replace(/\D/g, '')}?text=${en
     <div class="container-site grid gap-10 md:grid-cols-3">
       <div>
         <div class="mb-4 flex items-center gap-3">
-          <img src="/logo.png" alt={site.name} class="h-14 w-14 rounded-full border-2 border-white" />
+          <img src={logoUrl} alt={site.name} class="h-14 w-14 rounded-full border-2 border-white" />
           <div>
             <p class="font-display text-xl font-semibold">{site.name}</p>
             <p class="text-sm text-white/80">{site.tagline}</p>

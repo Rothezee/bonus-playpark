@@ -7,6 +7,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import SucursalCard from '../components/SucursalCard.astro';
 import site from '../data/site.json';
 import sucursales from '../data/sucursales.json';
+import { withBase } from '../utils/url';
 ---
 
 <BaseLayout title={site.name} description={site.description}>
@@ -17,8 +18,8 @@ import sucursales from '../data/sucursales.json';
     subtitle="Descubrí un mundo de diversión familiar con juegos, premios y momentos para recordar. Un lugar donde las familias vuelven."
   >
     <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a href="/ubicacion" class="btn btn-accent">Visitá una sucursal</a>
-      <a href="/franquicias" class="btn btn-secondary">Quiero abrir mi franquicia</a>
+      <a href={withBase('/ubicacion')} class="btn btn-accent">Visitá una sucursal</a>
+      <a href={withBase('/franquicias')} class="btn btn-secondary">Quiero abrir mi franquicia</a>
     </div>
   </Hero>
 
@@ -97,7 +98,7 @@ import sucursales from '../data/sucursales.json';
         }
       </div>
       <div class="mt-8 text-center">
-        <a href="/ubicacion" class="btn btn-primary">Ver todas las ubicaciones</a>
+        <a href={withBase('/ubicacion')} class="btn btn-primary">Ver todas las ubicaciones</a>
       </div>
     </div>
   </section>
@@ -112,7 +113,7 @@ import sucursales from '../data/sucursales.json';
         <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
           @bonusplaypark
         </a>
-        <a href="/sorteos" class="btn btn-accent">Ver sorteos activos</a>
+        <a href={withBase('/sorteos')} class="btn btn-accent">Ver sorteos activos</a>
       </div>
     </div>
   </section>

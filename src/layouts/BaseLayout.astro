@@ -6,10 +6,12 @@ interface Props {
 
 const { title, description } = Astro.props;
 import site from '../data/site.json';
+import { withBase } from '../utils/url';
 import '../styles/global.css';
 
 const pageDescription = description ?? site.description;
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const logoUrl = withBase('logo.png');
 ---
 
 <!doctype html>
@@ -19,7 +21,7 @@ const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/png" href={logoUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
