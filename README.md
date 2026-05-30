@@ -97,3 +97,11 @@ npm run build
 ```
 
 Subí el contenido de `dist/` a Vercel, Netlify o cualquier hosting estático.
+
+## Deploy en GitHub Pages (configurado)
+
+El sitio se publica automáticamente en cada push a `main`:
+
+**URL en vivo:** https://rothezee.github.io/bonus-playpark/
+
+Repositorio: https://github.com/Rothezee/bonus-playpark
