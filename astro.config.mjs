@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://rothezee.github.io',
-  base: '/bonus-playpark',
+  base: '/bonus-playpark/',
   vite: {
     plugins: [tailwindcss()],
   },

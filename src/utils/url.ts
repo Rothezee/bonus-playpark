@@ -5,11 +5,14 @@ export function withBase(path: string): string {
   }
 
   const base = import.meta.env.BASE_URL;
+  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
   const clean = path.startsWith('/') ? path.slice(1) : path;
 
-  if (!clean) return base;
+  if (!clean) {
+    return normalizedBase;
+  }
 
-  return `${base}${clean}`;
+  return `${normalizedBase}${clean}`;
 }
 
 export function isActiveLink(href: string, currentPath: string): boolean {
